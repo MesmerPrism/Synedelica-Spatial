@@ -1,9 +1,19 @@
 # Cleared source continuation — 13 November 2026
 
-This repository owns the new cleared library/demo. Development candidate:
-`codex/cleared-source`; first remote source checkpoint is pending final checks.
+This repository owns the new cleared library/demo. Selected development head:
+`main`. Reviewed source checkpoint `d01d9a660a10a55fbe5a4403e4d2448703268e99`
+was pushed non-force to the verified PUBLIC remote
+`https://github.com/MesmerPrism/Synedelica-Spatial` and independently read back
+through Git refs and GitHub's commit API. The containing main ref also carries
+this continuation; its final readback receipt remains local.
 The older private application and its retained APK remain frozen references.
 No old application Git history or recovered asset values were imported.
+
+Branch reconciliation: `codex/cleared-source` is retained at the reviewed source
+checkpoint and is an ancestor of selected main. There are no unmerged worker
+branches: workers delivered disjoint files to this repository's sole integrator.
+CP1 admission/contracts and CP2 independent source/host milestone are complete.
+The explicit closure contains55 files, including committed review/verification.
 
 Implemented: pure fixed-window PCM16 analyzer, common original capture timestamp
 mapping, authored RGB quiet/onset style, immutable LUT16, texture transfer, actual

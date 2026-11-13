@@ -34,10 +34,12 @@ Java library API metadata; final Scene submission serializes with logical Stop.
 Failing timestamp and Scene regression tests preceded their fixes. The final
 Gradle run includes those tests and accepted the dependency metadata correction.
 
-The explicit provenance ledger covers every source/document/test/tool file.
+The explicit provenance ledger covers all55 source/document/test/tool files.
 The boundary gate checks current admitted hashes plus each reachable Git commit's
 own ledger/tree/hash closure and excluded payload/dependency content. Git review
-and independent remote SHA readback complete the source handoff. Raw logs,
+and independent remote SHA readback completed the source handoff: source
+`d01d9a660a10a55fbe5a4403e4d2448703268e99` matched both Git refs and GitHub's
+commit API at the verified PUBLIC MesmerPrism/Synedelica-Spatial remote. Raw logs,
 reference selections and remote receipts remain ignored local evidence.
 
 Remaining: actual carrier callsites/JNI/GPU selection and effective readback,

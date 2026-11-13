@@ -27,7 +27,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "32f8e5a419d106c70f04780a8abafbca4cc80f88def1dacb323fc68b6f272981"
+      "sha256": "08724c667714e3e159a13ef573ed8e0de9aeabc0cbaa6769ce5948fa57b24476"
     },
     {
       "path": ".planning/PLAN.md",
@@ -51,7 +51,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "069d49b31ccf29d62d915985415e6e2e84369534ea351b55dac6896d9ff5e626"
+      "sha256": "e352b3f14c5f8d83c3f37f73859701274dbecd74d607d050fc2b5cf18b3b1165"
     },
     {
       "path": "AGENTS.md",
