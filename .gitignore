@@ -1,0 +1,11 @@
+.gradle/
+**/build/
+local/
+local.properties
+.superpowers/
+*.apk
+*.aab
+*.pcm
+*.wav
+*.jks
+__pycache__/

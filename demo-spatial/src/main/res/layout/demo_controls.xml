@@ -1,0 +1,14 @@
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later; newly authored explicit foreground controls. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="24dp" android:background="#19202A">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Synedelica Spatial — authored demo" android:textColor="#FFFFFF" android:textSize="24sp" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Start uses your microphone while this app is focused. Audio is analyzed in memory; it is never recorded or transmitted. Stop removes the color effect."
+        android:textColor="#FFFFFF" android:paddingTop="16dp" android:textSize="18sp" />
+    <TextView android:id="@+id/capture_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Stopped" android:textColor="#FFFFFF" android:paddingTop="16dp" android:textSize="18sp" />
+    <Button android:id="@+id/start_capture" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Start microphone and effect" />
+    <Button android:id="@+id/stop_capture" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Stop" />
+</LinearLayout>

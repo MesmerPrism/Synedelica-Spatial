@@ -1,0 +1,8 @@
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later; newly authored demo theme and panel id. -->
+<resources>
+    <style name="DemoTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#78D6CA</item>
+    </style>
+    <item name="demo_controls_panel" type="id" />
+</resources>

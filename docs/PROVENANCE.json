@@ -1,0 +1,449 @@
+{
+  "schema": "synedelica.public-source-admission.v1",
+  "date": "2026-11-13",
+  "selection": "fresh history; newly authored code and synthetic tests only",
+  "self_hash": "This ledger is bound by its containing Git tree; it does not hash itself.",
+  "reference_policy": "SDK API signatures and creative references credited in THIRD_PARTY.md; no referenced implementation or recovered data admitted.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9"
+    },
+    {
+      "path": ".gitignore",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "085fcc190ab6bbbab7c593cc8ecdc5668c9d7399b1e7cedb390b7ea0299a4494"
+    },
+    {
+      "path": ".planning/CONTINUATION.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "32f8e5a419d106c70f04780a8abafbca4cc80f88def1dacb323fc68b6f272981"
+    },
+    {
+      "path": ".planning/PLAN.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "7dffa714a0fc178121de1001d997c22cc46487ff9aaa0ac66341b19861e49ef9"
+    },
+    {
+      "path": ".planning/REVIEW.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "3470eafd17e12c820ae8cc5d4f20802516845f6a056f6abf547359ec7d1d9d1d"
+    },
+    {
+      "path": ".planning/VERIFICATION.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "069d49b31ccf29d62d915985415e6e2e84369534ea351b55dac6896d9ff5e626"
+    },
+    {
+      "path": "AGENTS.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "dcdf7a2cc78000b1c33882023a445c051bb071e160cbd139e63bfb195e0cdf4c"
+    },
+    {
+      "path": "LICENSE",
+      "classification": "standard-license",
+      "source": "GNU standard AGPLv3 license text",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "README.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "193f6961bfdb81337f7e06ef28ec1cb26a166e303d7a7998ae3ce43843831e7a"
+    },
+    {
+      "path": "THIRD_PARTY.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "7d8e86e0a464a12b6accddeeeb505cde1c6251c8a7a77ecbac6a86431326045a"
+    },
+    {
+      "path": "adapter-spatial/build.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "2a216895dd41f5f414bc849f79ce4b944c028aec441817ea0a24340e5e423774"
+    },
+    {
+      "path": "adapter-spatial/src/main/AndroidManifest.xml",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "f8ca6b3b058f72389efa047df19662820a4993b4c3ccb980f42263ac48191cdd"
+    },
+    {
+      "path": "adapter-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/spatial/MetaSceneLutPort.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "46d09eedcbecdfe5f755077924465d0ced9133031f510c150102beadeab7ce69"
+    },
+    {
+      "path": "adapter-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/spatial/SpatialLutAdapter.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "59fc2fc1e393d103268ababd83fef1dad3a2c2e5011d1a23dda29c2b52957018"
+    },
+    {
+      "path": "adapter-spatial/src/test/kotlin/io/github/mesmerprism/synedelica/spatial/SpatialLutAdapterTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "f7c1e2cfe5613ddeb5cf7bb6377b6ff3c81e86a036593e650cd7a1f506bb0992"
+    },
+    {
+      "path": "adapter-texture/build.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "844682019e915e28d653f947469cfec1d4552e2f2649616426792f30a6e40013"
+    },
+    {
+      "path": "adapter-texture/src/main/kotlin/io/github/mesmerprism/synedelica/texture/TextureLutAdapter.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "efb64fd653a2749990cdfd884e7a0d7c18b0e1f8d5ca9708d453009c491aa614"
+    },
+    {
+      "path": "adapter-texture/src/test/kotlin/io/github/mesmerprism/synedelica/texture/TextureLutAdapterTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "a99f8c6b030d0d53814d164dfdf05c124c97605f67ffa24fa7e97ae63ca02638"
+    },
+    {
+      "path": "build.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "15660420b0a406e56cab992797b609d9e5140a0c2743d7e5dc9f81882b49cb2b"
+    },
+    {
+      "path": "core/build.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "447a36d4020263e6a72c15e2891498f7da291c63cdab696d798bc408f308aba4"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/AudioAnalyzer.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "a394c8da658e29b8c05678629942914fd0661f8165f87fbdcd77239232e26078"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/AudioCaptureTime.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "c2bbe290db4d8e2b2b89dd127be2ccf75aaa8f066c04740531e3b7276d4809d2"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/AudioSnapshot.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "73b6e71e665764144f8e151ed8cb0f8bc20c2669f6032c3892f4081be0e87139"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/BandState.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "34d9bcd9e1a9c27d82eb5417775a08c80af08df67109b9cc393175d1caf55414"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/LutFrame.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "5234cfe397bac2ae2a4b5a42b28a4fe49f3e6a3a016d39dc3aa8e416ee077ecd"
+    },
+    {
+      "path": "core/src/main/kotlin/io/github/mesmerprism/synedelica/core/QuietStyle.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "4ca994487f7ab6a4f94678a49db89a1c4e1bd2f66dda7cac9c017a650a3b2275"
+    },
+    {
+      "path": "core/src/test/kotlin/io/github/mesmerprism/synedelica/core/AudioCaptureTimeTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "0da2388be37c5c31deca485da066756c531a08abecb2c33322a9f0e942b00177"
+    },
+    {
+      "path": "core/src/test/kotlin/io/github/mesmerprism/synedelica/core/CoreTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "bd2df2dbe46a740d98645d382f1415aebe9e18f55cb90e72959abcc5395165dd"
+    },
+    {
+      "path": "demo-spatial/build.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "19328ee8b0b91acea934d297fbcd7779f85c03f4bae806d9208d6086b040f8e5"
+    },
+    {
+      "path": "demo-spatial/src/main/AndroidManifest.xml",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "d3bba931711f3483054a1f861096b99d4ffbca993366c09a42e411bd3599658d"
+    },
+    {
+      "path": "demo-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/demo/spatial/CaptureLifecycle.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "38cdc53f4ab8d2715238baeb2063e199da98db7507b496a9952a50ea271701ef"
+    },
+    {
+      "path": "demo-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/demo/spatial/CaptureWorkerGate.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "e4f8fafac5b1e4c98fdb22c3b9ad40d67f6de16bb2867d712c36bd3522b3f1a0"
+    },
+    {
+      "path": "demo-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/demo/spatial/DemoSpatialActivity.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "31b79b2e3f264a48df9fd37e4a8d98fc90a3820ea4d63482ae83466e6259171a"
+    },
+    {
+      "path": "demo-spatial/src/main/kotlin/io/github/mesmerprism/synedelica/demo/spatial/ForegroundAudioCapture.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "b245fb62df4933182406cd7b5aea5af47fde6004828f4d5617c4d284f72133de"
+    },
+    {
+      "path": "demo-spatial/src/main/res/layout/demo_controls.xml",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "eb120e992d2d41bfa6779d626ad6e15e92704c92c186c4dea5a4cbcf48fe72ac"
+    },
+    {
+      "path": "demo-spatial/src/main/res/values/styles.xml",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "01b627cb12d32e6aec2333cc6eaf92fcc0143314e88a56d841360f278c0b9682"
+    },
+    {
+      "path": "demo-spatial/src/test/kotlin/io/github/mesmerprism/synedelica/demo/spatial/CaptureLifecycleTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "82d8c52db3b6a9cbacdfe608671e9657170442fab7296eec8121f042cfce0c73"
+    },
+    {
+      "path": "demo-spatial/src/test/kotlin/io/github/mesmerprism/synedelica/demo/spatial/CaptureWorkerGateTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "f4f730d5eb29fcdffe48eff46825abba2508fc0e1f6cdeb67573b3abafba49a3"
+    },
+    {
+      "path": "docs/ABI.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "8094337a49323929a0cf4d9b3c487d44aa3f594a317d368ae52c34c580dd4167"
+    },
+    {
+      "path": "docs/INTEGRATION.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "38976f46e4f96a6dc461fe54ad2e5f3c8ac02bf03a17213fd12d54768e9a9b9e"
+    },
+    {
+      "path": "docs/PROVENANCE.json",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": null
+    },
+    {
+      "path": "gradle.properties",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "da3444e493e32f5fd2f3a67ff94b680b4b5097462da40aa83b91609380b75ff3"
+    },
+    {
+      "path": "integration/body-swap/README.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "df79d400a0b87db04713b1b93fbe00ccfa73c41d18dd5b97de9d5d814e9902ef"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/AndroidAudioRecordRuntime.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "67de759e490ed1048e7ff891c4fc39a889cc5d2e3a601570e962a2263025eda1"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioCaptureTime.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "338538e877fd355907838a069bb636127ae85ee249d393376d74b1b0f7c06d8c"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioControls.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "00f7917c4266651521f974a084f9b58e22d34ef46c1816296b347a0d5477574b"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioFeatureOwner.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "1f5c0ed384f59f32d9c1e76c409005547dc5b64d77e4c5108193324c63b5dec4"
+    },
+    {
+      "path": "integration/body-swap/payload/tests/test_product_audio_owner.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "2652b26e5188b9c01a19280af5d8702a57b90dadbd1769ac8f73c79c9d9ebde0"
+    },
+    {
+      "path": "integration/body-swap/shared-root-callsites.proposal.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "a9e8622eb93a88cf683d97e95df72e0103806dd9b266d6d2394bd3e6b798d39a"
+    },
+    {
+      "path": "integration/body-swap/tests/ProductAudioFeatureOwnerContractTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "643313dd352fba69a136dc4503743189cd0b38809ff718426e45b13b4b7195a8"
+    },
+    {
+      "path": "settings.gradle.kts",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "f00449f99d2ff342c7632cfc8513eb676a06fabd3aee42875da9b9d12552fc0a"
+    },
+    {
+      "path": "tests/test_public_boundary.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "6f0959aeb9dd5ead3b2e6607abb88776514ebb7650ed42e46fca1ae76b864dd0"
+    },
+    {
+      "path": "tools/Check-DemoApk.ps1",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "7f499e85e22a056522f83143fcab3bbc256c75701e0ce9f512e6c198d6335af5"
+    },
+    {
+      "path": "tools/check_public_boundary.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "4c48bd1792ebd941bf24e9db599c5d6951ff50b7748e5d9ba2eb0e89fbb6cef0"
+    },
+    {
+      "path": "tools/run_host_tests.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "2963dcf63ef401332e7ce59cee40d4152d4aa47eb3e461e3f86763dd0c529e6b"
+    }
+  ]
+}
