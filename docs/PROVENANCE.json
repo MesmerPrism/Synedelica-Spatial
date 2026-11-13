@@ -35,7 +35,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "fbb63d660980c4a0910d81470c67f3fd5bc9eacd22f3bc3f4794b7626654bdb3"
+      "sha256": "0d4986a403fdee6f99466a6a4d23cfbac777ba9eda28118eb36b5bf92c0c45f6"
     },
     {
       "path": ".planning/AUDIO-RETIREMENT-V2.md",
@@ -43,7 +43,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "8854ab591827aea2600b8f00c5b18a08ec1a1c17a4fdd548c04c1b9a80e838a0"
+      "sha256": "f7ae48e802cb2341ed5a238289ba13063f0e0556a0a189335f2bb9279f50247e"
     },
     {
       "path": ".planning/CONTINUATION.md",
@@ -51,7 +51,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "19dd76e807ccd9b9db9950b3d76756108304990c273dad851539ab0bf1b420bb"
+      "sha256": "5e558778e841df54503733fabd969bcb23b839f1d2dc459f88f53990e81dab16"
     },
     {
       "path": ".planning/PLAN.md",

@@ -22,8 +22,14 @@ real API35 Android jar. No recorder was initialized by runtime tests. Earlier
 39 library/adapter/demo tests are reused from the unchanged initial source cohort.
 Actual carrier/Android microphone/GPU/device qualification stays open.
 
-The code/continuation source checkpoint is consolidated on main at publication;
-exact final remote readback is recorded in the ignored source-owned receipt.
+Reviewed repair source `f57fa9d5093f3ae9cba5fbccc0f43bc64138ae07` was integrated
+by fast-forward into selected `main`, pushed non-force to the same verified PUBLIC
+remote and independently matched through Git refs and GitHub's commit API. The
+containing main ref also carries this checkpoint continuation; its final exact
+readback is in the ignored source-owned receipt. The62-file current closure and
+every reachable commit's source/history ledger pass the public boundary gate.
+`codex/audio-retirement-v2` is retained at the source repair as a main ancestor;
+`codex/cleared-source` and initial6b94f01 remain recoverable retained ancestors.
 
 ## Retained initial source checkpoint
 

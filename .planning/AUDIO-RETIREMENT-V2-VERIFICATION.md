@@ -8,6 +8,8 @@
 | Android compilation | All six production payloads compiled with real API35 android.jar |
 | Boundary tests and self-test | 4 cases passed; forbidden/clean synthetic fixtures discriminated |
 | Independent source review | No unresolved P1/P2 after recorded corrections |
+| Source/history closure | 62 explicit admitted files; every reachable commit ledger/tree/hash passed |
+| Source remote readback | f57fa9d5093f3ae9cba5fbccc0f43bc64138ae07 matched Git refs and GitHub API |
 
 The baseline6b94 runtime was compiled separately with the new default-runtime
 admission regression; it failed as expected because two instances admitted at
