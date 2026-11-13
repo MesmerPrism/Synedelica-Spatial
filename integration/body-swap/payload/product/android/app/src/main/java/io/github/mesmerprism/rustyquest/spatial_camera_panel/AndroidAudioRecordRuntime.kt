@@ -13,29 +13,35 @@ import java.util.concurrent.locks.LockSupport
 
 /**
  * Activity-owned, foreground-only runtime. No service, permission request, PCM recording,
- * network or native texture submission. One runtime instance per ProductAudioFeatureOwner.
+ * network or native texture submission. Process admission survives runtime recreation;
+ * success requires recorder release and a separate observer's actual worker join.
  * Hardware/Android qualification is the embedding integrator's separate responsibility.
  */
-class AndroidAudioRecordRuntime : ProductAudioCaptureRuntime {
+class AndroidAudioRecordRuntime(
+    private val admission: ProductAudioAdmissionGate = ProductAudioProcessAdmission.microphone,
+) : ProductAudioCaptureRuntime {
     private val gate = Any()
     private var outstanding: Session? = null
 
     override fun create(generation: Long, receiver: ProductAudioCaptureReceiver): ProductAudioCaptureSession =
         synchronized(gate) {
             check(outstanding == null) { "Prior capture has not acknowledged release" }
-            Session(generation, receiver).also { outstanding = it }
+            val lease = admission.tryAcquire()
+                ?: error(if (admission.failed) "Process microphone retirement failed" else "Process microphone still owned")
+            Session(generation, receiver, lease).also { outstanding = it }
         }
 
     private inner class Session(
         private val generation: Long,
         private val receiver: ProductAudioCaptureReceiver,
+        private val lease: ProductAudioAdmissionGate.Lease,
     ) : ProductAudioCaptureSession {
         private val stateGate = Any()
         private val cancelled = AtomicBoolean(false)
         private var started = false
         private var workerLaunched = false
-        private var finished: Boolean? = null
-        private var completion: ((Boolean) -> Unit)? = null
+        private var finished: ProductAudioCaptureRetirement? = null
+        private var completion: ((ProductAudioCaptureRetirement) -> Unit)? = null
         private var completionDelivered = false
 
         override fun start() {
@@ -47,10 +53,10 @@ class AndroidAudioRecordRuntime : ProductAudioCaptureRuntime {
             if (launch) launchWorker()
         }
 
-        override fun stop(onClosed: (Boolean) -> Unit) {
+        override fun stop(onClosed: (ProductAudioCaptureRetirement) -> Unit) {
             // Logical cancellation does not wait for AudioRecord, a worker or a callback.
             cancelled.set(true)
-            val ready: Boolean?
+            val ready: ProductAudioCaptureRetirement?
             val launch: Boolean
             synchronized(stateGate) {
                 if (completion != null) return
@@ -70,17 +76,20 @@ class AndroidAudioRecordRuntime : ProductAudioCaptureRuntime {
         }
 
         private fun launchWorker() {
-            try {
-                Thread({ capture() }, "synedelica-audio-$generation").start()
-            } catch (_: Exception) {
-                // No recorder was allocated. A failed thread launch must not strand retirement.
-                finish(true)
-                if (!cancelled.get()) receiver.onFailure()
-            }
+            val lifetime = ProductAudioWorkerLifetime(
+                operation = ::capture,
+                onTerminated = { result ->
+                    // All receiver callbacks precede the final drain ACK.
+                    try { if (!result.successful && !cancelled.get()) receiver.onFailure() }
+                    finally { finish(result) }
+                },
+                onStartFailure = { if (!cancelled.get()) receiver.onFailure() },
+            )
+            lifetime.start()
         }
 
         @SuppressLint("MissingPermission") // Only the owning foreground Start path admits this session.
-        private fun capture() {
+        private fun capture(): Boolean {
             var recorder: AudioRecord? = null
             val pcm = ShortArray(256)
             var released = true
@@ -144,22 +153,25 @@ class AndroidAudioRecordRuntime : ProductAudioCaptureRuntime {
                     } catch (_: Exception) { /* release remains mandatory after stop failure */ }
                     try { it.release() } catch (_: Exception) { released = false }
                 }
-                finish(released)
             }
+            return released
         }
 
-        private fun finish(released: Boolean) {
-            // Only a successful release opens the runtime gate for a replacement recorder.
-            synchronized(gate) { if (released && outstanding === this) outstanding = null }
-            val notify: ((Boolean) -> Unit)?
+        private fun finish(result: ProductAudioCaptureRetirement) {
+            // Called only by the joining observer (or proof operation never began).
+            synchronized(gate) {
+                admission.complete(lease, result.successful)
+                if (result.successful && outstanding === this) outstanding = null
+            }
+            val notify: ((ProductAudioCaptureRetirement) -> Unit)?
             synchronized(stateGate) {
                 if (finished != null) return
-                finished = released
+                finished = result
                 notify = if (!completionDelivered) completion else null
                 if (notify != null) completionDelivered = true
             }
             // Never acquire the feature owner's lock while holding either runtime monitor.
-            notify?.invoke(released)
+            notify?.invoke(result)
         }
     }
 

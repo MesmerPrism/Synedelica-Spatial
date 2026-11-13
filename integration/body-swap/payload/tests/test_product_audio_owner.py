@@ -22,7 +22,8 @@ class ProductAudioOwnerTests(unittest.TestCase):
         fixture = carrier / "tests/fixtures/product_audio/AudioOwnerChecks.kt"
         sources = [supplier / "core/src/main", fixture,
                    production / "ProductAudioFeatureOwner.kt", production / "ProductAudioControls.kt",
-                   production / "ProductAudioCaptureTime.kt"]
+                   production / "ProductAudioCaptureTime.kt", production / "ProductAudioRetirement.kt",
+                   production / "ProductAudioWorkerLifetime.kt"]
         for source in sources:
             self.assertTrue(source.exists(), f"Missing pinned source input: {source}")
         command = [sys.executable, str(supplier / "tools/run_host_tests.py"),

@@ -7,6 +7,22 @@ does not block a default Solo camera path. Stop, focus loss, pause and destroy
 retire publication synchronously and await acknowledged hardware release before
 a replacement capture can start. Failed release blocks replacement.
 
+The carrier handoff now uses retirement protocol version2. Pure cached status is
+separate from mutating permission reconciliation and generation-scoped native
+observations. Its immutable retirement ticket joins recorder release, ACTUAL
+capture-worker termination and callback drain, and every admitted/detached sink's
+physical resource ACK (or actual never-created proof). Process admission begins
+at sink adoption or capture admission and persists across Activity recreation.
+Missing evidence stays pending; failures are sticky. The backend's joining
+observer delivers all lifecycle notifications before its final drain ACK.
+
+The carrier retains actual ticket/owner/session and genuine Whole subject custody,
+joins it INSIDE the SAME Whole/Original before global terminal/fence clear and
+retained/no-media/zero-attachment finish, and guards new resource admission through
+its existing whole-app lifecycle. Audio completion alone never proves the Whole.
+No Activity allOf after old Whole success, ignored audio flag in a closed Body
+proof, or new supplier-minted final Whole JSON satisfies that contract.
+
 LUT transfer: dimension16, 12288 RGB8 channels, red-fastest/green/blue-outermost.
 The immutable Kotlin value also declares contractVersion1,
 LutOrder.RedFastestBlueOutermost and ColorEncoding.EncodedStraightRgb8.

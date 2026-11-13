@@ -22,12 +22,36 @@
       "sha256": "085fcc190ab6bbbab7c593cc8ecdc5668c9d7399b1e7cedb390b7ea0299a4494"
     },
     {
+      "path": ".planning/AUDIO-RETIREMENT-V2-REVIEW.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "c273e1e4248c870ef52a2f2fcba14245633ccc11d21a0f4f6d26db34ece1c430"
+    },
+    {
+      "path": ".planning/AUDIO-RETIREMENT-V2-VERIFICATION.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "fbb63d660980c4a0910d81470c67f3fd5bc9eacd22f3bc3f4794b7626654bdb3"
+    },
+    {
+      "path": ".planning/AUDIO-RETIREMENT-V2.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "8854ab591827aea2600b8f00c5b18a08ec1a1c17a4fdd548c04c1b9a80e838a0"
+    },
+    {
       "path": ".planning/CONTINUATION.md",
       "classification": "newly-authored",
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "08724c667714e3e159a13ef573ed8e0de9aeabc0cbaa6769ce5948fa57b24476"
+      "sha256": "19dd76e807ccd9b9db9950b3d76756108304990c273dad851539ab0bf1b420bb"
     },
     {
       "path": ".planning/PLAN.md",
@@ -323,7 +347,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "38976f46e4f96a6dc461fe54ad2e5f3c8ac02bf03a17213fd12d54768e9a9b9e"
+      "sha256": "c72b87fb20782f7ac33b59d8a094fac6e33d3929ed539aff3750c7cbd875073f"
     },
     {
       "path": "docs/PROVENANCE.json",
@@ -347,7 +371,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "df79d400a0b87db04713b1b93fbe00ccfa73c41d18dd5b97de9d5d814e9902ef"
+      "sha256": "3fd53a593de793387cf44adc0c4b3c6f7bb8eab72aef2dd447f5dc84639b66bb"
     },
     {
       "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/AndroidAudioRecordRuntime.kt",
@@ -355,7 +379,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "67de759e490ed1048e7ff891c4fc39a889cc5d2e3a601570e962a2263025eda1"
+      "sha256": "b14f151007aa2450a13ebd36720b651d552cf7373431b3acb564fc235fc9d6ff"
     },
     {
       "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioCaptureTime.kt",
@@ -379,7 +403,23 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "1f5c0ed384f59f32d9c1e76c409005547dc5b64d77e4c5108193324c63b5dec4"
+      "sha256": "dfa0f855d8f019bdff94f7703480523535a43f7be247c177761e2c4c95597cdb"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioRetirement.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "c35818a9ad6e4d9f2ce730116380197cdea697727c97c63554bc5ec03bee1316"
+    },
+    {
+      "path": "integration/body-swap/payload/product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioWorkerLifetime.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "b345e6753e9059305b827c15168638dc27a31a2d69fc12ad6d323481af501c62"
     },
     {
       "path": "integration/body-swap/payload/tests/test_product_audio_owner.py",
@@ -387,7 +427,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "2652b26e5188b9c01a19280af5d8702a57b90dadbd1769ac8f73c79c9d9ebde0"
+      "sha256": "07853023818340af9af0ac907e0b5db9285c587225e5a119b275cdc573aa56c7"
     },
     {
       "path": "integration/body-swap/shared-root-callsites.proposal.md",
@@ -395,7 +435,15 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "a9e8622eb93a88cf683d97e95df72e0103806dd9b266d6d2394bd3e6b798d39a"
+      "sha256": "066367d10b75b295a7e288feb587391aa1f5b8168a768fa6a0fd734261756e44"
+    },
+    {
+      "path": "integration/body-swap/tests/AndroidAudioRuntimeAdmissionTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "0eb72a0a9d59c0af5dea7bb68fac56413adab963ab14ff6d0522ea0638eef2fa"
     },
     {
       "path": "integration/body-swap/tests/ProductAudioFeatureOwnerContractTest.kt",
@@ -403,7 +451,15 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "643313dd352fba69a136dc4503743189cd0b38809ff718426e45b13b4b7195a8"
+      "sha256": "9fe9a93e5024f20c5ed91e780dc8e4f7167d02beac22878c1ab76bf7f00a853f"
+    },
+    {
+      "path": "integration/body-swap/tests/ProductAudioWorkerLifetimeTest.kt",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "86a392874aba90c51038dc7050286d54b009e6da069ebd0e077784c605e94f1c"
     },
     {
       "path": "settings.gradle.kts",

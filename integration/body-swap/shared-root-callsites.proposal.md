@@ -2,7 +2,7 @@
 <!-- Independently authored integration proposal; no recovered application source. -->
 # Shared-root callsite proposal: integrator applies
 
-This is an explicit proposal for the embedding app's existing foreground Activity, manifest and action router. Their current source is not part of the cleared repository, so these snippets are not represented as a verified diff. Review the actual signatures, imports and owning lifecycles before applying. Copy only the four separately listed production payload files to their exact destinations.
+This is an explicit proposal for the embedding app's existing foreground Activity, manifest and action router. Their current source is not part of the cleared repository, so these snippets are not represented as a verified diff. Review actual signatures and lifecycles before applying. Copy all six listed production payloads and the test registration/fixture to their exact destinations.
 
 ## Foreground Activity
 
@@ -27,7 +27,7 @@ val audioPermission = object : ProductAudioPermission {
     ) == PackageManager.PERMISSION_GRANTED
 
     override fun request(result: (Boolean) -> Unit) {
-        // A queued explicit Start resumes after release on the capture worker.
+        // A queued explicit Start can resume on the capture-join observer or a sink ACK thread.
         // Marshal the actual Activity launcher to main and recheck cancellation there.
         runOnUiThread {
             val current = if (::productAudioOwner.isInitialized) productAudioOwner.status() else null
@@ -74,11 +74,31 @@ productAudioOwner.onDestroy()
 audioPermissionWaiters.clear()
 ```
 
-Retain any owner/runtime with pending asynchronous retirement until it acknowledges release. It is safe to drop the UI reference after its runtime worker retains the stopped session; it is not safe to allocate a replacement capture for a recreated Activity while the old runtime is still retiring. The embedding app must transfer a **retirement gate only** across recreation, or prevent Start in the replacement Activity until old cleanup confirms release. Do not transfer an active microphone into a background owner. A failed release blocks further capture until the underlying resource is verifiably retired; never instantiate another runtime to bypass this barrier.
+Retain the exact version2 ticket and original owner/session custody on the existing app lifecycle owner across recreation. Default process app-owner and microphone gates prevent bypass of pending physical retirement; never substitute new production gates or transfer active capture to a background owner. Failed retirement is sticky.
+
+## Required Whole/Original join before terminal cleanup
+
+Register audio INSIDE the SAME existing Whole/Original transaction, including
+retained-cleanup/no-media and zero-attachment Activity finish. Before its global
+terminal/fence-clear decision, call `productAudioOwner.retire()` to synchronously
+close publication and join the returned version2 ticket. Completion must prove
+microphone release, actual capture-worker termination/join, callback drain and
+every admitted/detached physical sink ACK (or actual never-created resources).
+Missing ACK stays pending; failure cannot authorize restart. Retain actual
+ticket/owner/session plus genuine app/run/request/Whole-subject custody; generation
+alone is not an identity. Keep that custody on the existing lifecycle owner.
+
+An Activity allOf after old Whole success is false cleanup. Do not append ignored
+audio fields to closed Body/no-media proof families. The carrier owns any new
+app-level envelope and its actual producer/readers/journal; this supplier defines
+no final Whole JSON, camera result, or native retirement proof.
+The existing whole-app lifecycle also remains the Start/resource-adoption authority;
+audio completion alone cannot authorize restart while any other Whole participant
+is pending. Do not forward/queue owner Start or adopt sinks through a closed app-level gate.
 
 ## Controls and status
 
-Bind explicit Start and Stop click handlers directly to this Activity's `productAudioControls.start()` and `.stop()`. Render status after permission completion, lifecycle changes and asynchronous capture/retirement changes by reading `.status()` on the existing UI refresh mechanism. Controls should show permission pending/denied, capture starting/running/stopping/cleanup failed, requested/enabled and native state unknown. Audio settings call `.updateSettings(StyleSettings(...))`; reject a false result visibly without changing the active settings.
+Bind typed Start/Stop directly to the actual Activity owner. Render cached pure `status()` on existing observers; it never checks permission or starts cleanup. Call mutating `reconcilePermission()` explicitly on lifecycle/control/permission paths, separate from observation guards. Native evidence enters via `observeNativeLut(generation,Boolean?)`, only for the live admitted generation; retirement resets unknown and rejects old callbacks. Never query a driver from status. Controls show truthful requested/enabled, pending physical cleanup and unknown native state.
 
 Add explicit cases to the existing Activity-owned action router:
 
@@ -106,6 +126,6 @@ Do not add a service, background microphone permission/workflow or automatic sta
 
 ## Adapter/facade hooks
 
-Register the existing consumers against the same owner, e.g. `registerSink("texture", textureConsumer)` and `registerSink("spatial", spatialConsumer)` only once each. Each implements ProductAudioSink, consumes the same immutable AudioSnapshot and creates its own admitted style engine. The Scene consumer posts to main and rechecks generation and BOOTTIME freshness when it actually calls the Scene port. The texture consumer validates immediately before its real host sink call. Both install a synchronous generation barrier in removeAudio, then retire resources on their owning thread. Unregistering/reconnecting one consumer never creates a capture session.
+Register consumers against the same owner. Version2 ProductAudioSink consumes the same immutable snapshot and implements `retireAudio(generation,onRetired)`: synchronous publication barrier followed by ACTUAL owning-thread physical Scene/GPU/texture/fence retirement ACK, or actual never-created proof. Queueing removal alone cannot ACK. Detached sink resources remain joined. Allocation/fences/current-pixel alpha/eye semantics and final original BOOTTIME freshness stay host-owned. Busy process admission rejects new resource adoption; the caller retains custody of a rejected sink.
 
-There is currently no admitted host texture allocation/JNI/native submission endpoint in this delivery. Keep `nativeReadback` omitted (unknown), retain the hook as an integrator task, and return unknown in action/UI status. Do not fabricate handles, report successful submission or replace raw camera state to simulate audio output.
+There is no admitted host texture allocation/JNI/submission endpoint in this delivery. Keep native state unknown until actual `observeNativeLut` evidence. The legacy constructor readback callback is unused. Do not fabricate handles, submission success or raw camera state to simulate audio output.

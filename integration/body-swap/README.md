@@ -1,76 +1,103 @@
 <!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
-<!-- Independently authored for Synedelica Spatial; no recovered application source. -->
-# Reviewed carrier patch delivery
+<!-- Authored integration contract; no recovered application source. -->
+# Carrier audio payload — retirement version2
 
-This directory is an integration payload, not an installed application change. The integrator copies each isolated file below into the embedding app only after review. No private application, shared Activity, facade, manifest or build file was edited. The cleared library is the only audio-analysis dependency. No recovered source, profiles, palettes, identifiers, PCM or fixtures are included.
+This is a source handoff, not an installed carrier change. The carrier integrator
+alone applies shared Activity, Whole/Original, journal, manifest, action and native
+paths. This version repairs initial6b94f01's runtime-local admission, effectful
+status and capture-only cleanup. All payload source is authored AGPL-3.0-or-later.
 
-| Payload relative to `payload/` | Exact embedding destination relative to the app repository |
+Copy the following to the SAME carrier-relative destinations under `payload/`:
+
+| Path suffix | Purpose |
 | --- | --- |
-| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioFeatureOwner.kt` | same path |
-| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioControls.kt` | same path |
-| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/AndroidAudioRecordRuntime.kt` | same path |
-| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioCaptureTime.kt` | same path |
-| `tests/test_product_audio_owner.py` | same path |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioFeatureOwner.kt` | Foreground capture and physical retirement join |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioRetirement.kt` | Version2 ticket/result and process admission |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioWorkerLifetime.kt` | Actual worker-termination observer |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/AndroidAudioRecordRuntime.kt` | Process-gated microphone backend |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioControls.kt` | Typed Start/Stop/status/settings actions |
+| `product/android/app/src/main/java/io/github/mesmerprism/rustyquest/spatial_camera_panel/ProductAudioCaptureTime.kt` | Shared original BOOTTIME mapping |
+| `tests/test_product_audio_owner.py` | Focused consumer test registration |
 
-The authored suite `tests/ProductAudioFeatureOwnerContractTest.kt` in this handoff
-is copied to the carrier destination `tests/fixtures/product_audio/AudioOwnerChecks.kt`.
-The Python registration runs the actual copied consumer sources against the
-selected supplier core. The integrator must independently verify the supplier
-revision and clean source before setting `SYNEDELICA_SPATIAL_ROOT` to its checkout.
-The wrapper requires that path and all named inputs; it does not itself verify a
-Git revision. Run `python -m unittest discover -s tests -p test_product_audio_owner.py`
-after applying the fixture and payloads. Missing configuration fails rather than
-skipping the test.
+Copy this handoff's `tests/ProductAudioFeatureOwnerContractTest.kt` to carrier
+`tests/fixtures/product_audio/AudioOwnerChecks.kt`. Its independent real-thread
+suite is `tests/ProductAudioWorkerLifetimeTest.kt`. The Python registration runs
+copied pure consumer sources with the supplier's real core and pinned compiler.
+Independently verify the supplier revision/clean bytes before setting
+`SYNEDELICA_SPATIAL_ROOT`; the wrapper verifies inputs, not Git revision/cleanliness.
 
-These are independently authored AGPL-3.0-or-later files, each with its own SPDX and authorship notice. Existing files at those destinations require integrator review before replacement. Android runtime uses API 24+ AudioRecord BOOTTIME timestamps, Builder/nonblocking short reads. Build configuration, library dependency admission and Android API qualification belong to the embedding app.
+## Physical retirement
 
-`shared-root-callsites.proposal.md` contains the separate Activity, permission, UI, CLI and manifest proposal. It is deliberately an integrator-applied proposal: no exact shared-source diff can be verified from this cleared repository. There is no generic extension dispatch and no global permission/capture singleton.
+`owner.retire(): ProductAudioRetirementTicket` synchronously closes publication
+before returning an immutable version2 completion view. Stop and lifecycle paths
+use that same transaction. Completion joins recorder release, actual capture-worker
+termination and callback drain, plus every admitted or detached sink's physical
+resource ACK. Missing ACK stays pending. An explicit failure is sticky and can
+never authorize replacement. Incomplete capture facts with no explicit failure
+stay pending for later complete evidence. Capture-only ACK cannot retire sinks.
 
-## Public signatures
+`ProductAudioCaptureSession.stop(onClosed: (ProductAudioCaptureRetirement) -> Unit)`
+requests cancellation without blocking the caller. The backend's joining observer
+waits for the ACTUAL capture worker to terminate before acknowledging release,
+workerTerminated and callbacksDrained. A worker-finally callback alone is not EOF.
+An operation that never began is an actual no-resource case. Failed release/join
+or observer creation cannot open process admission. PCM callbacks are synchronous
+within the capture worker, so successful join also proves their return.
+
+The version2 sink protocol replaces void removal:
 
 ```kotlin
-ProductAudioFeatureOwner(
-    permission: ProductAudioPermission,
-    runtime: ProductAudioCaptureRuntime,
-    nativeReadback: () -> Boolean? = { null },
-)
-fun start(): ProductAudioStatus
-fun stop(): ProductAudioStatus
-fun status(): ProductAudioStatus
-fun onResume()
-fun onPause()
-fun onFocusChanged(hasFocus: Boolean)
-fun onDestroy()
-fun observeCameraSource(value: String?)
-fun registerSink(id: String, sink: ProductAudioSink)
-fun unregisterSink(id: String)
-fun updateSettings(value: StyleSettings): Boolean
-
-ProductAudioControls(owner: ProductAudioFeatureOwner)
-fun start(): ProductAudioStatus
-fun stop(): ProductAudioStatus
-fun status(): ProductAudioStatus
-fun updateSettings(settings: StyleSettings): Boolean
+fun retireAudio(generation: Long, onRetired: (Boolean) -> Unit)
 ```
 
-Action IDs are `audio.start`, `audio.stop`, `audio.status`, `audio.settings`. The actual foreground caller's router invokes these typed methods. UI and CLI must share the same Activity-owned instance. Settings accept only finite `strength` and `quietStrength` in 0..1 and finite `clockSpeed` in 0..10; the initial core supports `AuthoredRgbWave` only.
+It installs a synchronous generation/publication barrier before returning, then
+acknowledges true only after owning Scene/GPU/texture/fence resources are actually
+retired or proves they were never created. Scheduling removal, zero current
+attachments, timeout or a logical barrier alone is not ACK. False is terminal
+failure. Detached/replaced sink operations remain joined. No compatibility shim
+converts old void removal to successful physical retirement.
 
-The host permission port implements `isGranted(): Boolean` and `request(result: (Boolean) -> Unit)`. Permission requests occur only after explicit Start in a resumed, focused owner. Duplicate Start does not prompt or open another session. Denial preserves the user's `requested` observation while `enabled=false`. Stop clears that intent. Resuming, gaining focus, source changes, reconnecting sinks and camera changes do not automatically start recording or ask permission.
+The process app-owner gate remains occupied through combined retirement, including
+host recreation; the backend has a separate process microphone gate. Production
+must retain those defaults or an equivalent SINGLE app-owned authority. Injected
+fresh gates are for isolated host tests. Failed gates are sticky and ignore replay.
 
-Capture injection uses `create(generation, receiver): ProductAudioCaptureSession`, followed by `start()`. Create must perform no capture or receiver callbacks and must leave no resources if it throws. The runtime owns its worker and AudioRecord. `stop(onClosed: (Boolean) -> Unit)` synchronously closes the logical delivery gate and must not join its worker. It calls completion once after retirement: true confirms release; false reports a terminal release failure. A false acknowledgement keeps `pendingCleanup=true`, sets `failure=cleanup-failed` and permanently blocks a replacement session in that owner/runtime. Replacing the owner/runtime to bypass unconfirmed release is forbidden.
+The carrier retains the exact ticket and original owner/session custody on its
+existing lifecycle owner across Activity recreation and binds the genuine app,
+request/run/Whole subject. Generation alone is not ticket identity. Join the
+participant INSIDE the SAME Whole/Original transaction BEFORE global terminal,
+fence clear, retained-cleanup/no-media and zero-attachment finish paths. An Activity
+allOf AFTER a successful old Whole is false cleanup. Existing closed Body/no-media
+proofs retain their scopes. The carrier owns any new app-level envelope, producer
+and readers; this supplier creates no final Whole JSON or native proof.
+Carrier Start and new resource adoption remain guarded by its existing whole-app lifecycle:
+an audio ticket alone never grants app restart or proves other resources retired.
+Do not forward or queue a new owner Start or adopt a new sink while that Whole forbids it.
 
-The concrete Android runtime enforces one outstanding session independently of the owner. It clears its admission gate only after AudioRecord.release returns successfully, and reports failed release without pretending cleanup succeeded. Cancellation before allocation and thread-start failure acknowledge cleanup without creating a recorder. Stop failure still attempts release. The host must retain the stopped runtime/owner until its cleanup acknowledgement; lifecycle destruction is logical cancellation, not a claim of completed release.
+## Foreground observation
 
-`onPcm(pcm, count, capturedAtNanos)` borrows PCM only during the callback. The Android worker wipes its ephemeral scratch buffer after delivery. `AudioAnalyzer(windowSize=256).accept(pcm, count, generation, capturedAtNanos)` is synchronous and returns immutable snapshots. A completed window starts at sequence 1 after each generation reset. Every registered sink receives the same snapshot object, with original sequence, generation, BOOTTIME domain and timestamp. Disconnecting a sink removes its modulation without replacing capture. Raw Solo/camera operation has no dependency on audio grant or Start.
+Explicit Start owns one foreground recorder/analyzer and fans the SAME immutable
+snapshot to selected sinks. Audio off/permission denial leaves raw Solo/camera
+actions independent. UI/CLI bind audio.start/stop/status/settings to their actual
+foreground Activity's typed owner. Pause/focus loss/destroy retire publication;
+restart waits for physical completion. Permission requests occur only from Start.
 
-Android timestamps use `AudioRecord.getTimestamp(AudioTimestamp.TIMEBASE_BOOTTIME)` and map the original hardware frame-position anchor to the first consumed PCM frame using the recorder sample rate. Missing, inconsistent, stale or future anchors drop the block. `SystemClock.elapsedRealtimeNanos()` measures age only; it is never a replacement capture timestamp. The pure `ProductAudioCaptureTime.firstSample` helper rejects age >250ms, and a one-second no-fresh-progress watchdog retires capture. These timestamps preserve the declared original frame estimate at every handoff; exact ADC/overrun behavior still requires Android/device qualification. Consumers must enforce age <=250ms again at the actual Scene or texture submission; the owner does not turn a delayed observation into a fresh one.
+`status()` is a PURE cached snapshot: no permission callback, cleanup or native
+query. `reconcilePermission()` is an explicit mutating lifecycle/control operation;
+PCM/start admission also checks access. `observeNativeLut(generation, Boolean?)`
+records actual host evidence only for the live admitted generation. Retirement
+or a new generation resets it to unknown; retired/old callbacks are ignored.
+The legacy constructor readback callback is unused. Enabled means
+foreground microphone capture, never native effect success. Pending cleanup spans
+capture-worker and physical sink retirement, not microphone release alone.
 
-`ProductAudioSink.onAudio(snapshot, settings)` can run on the capture worker. Register the texture and Scene consumers with this same owner. Each consumer uses its own style engine to avoid advancing one mutable engine twice. `removeAudio(generation)` must install a synchronous generation barrier before returning and dispatch resource removal on the resource-owning thread. Scene calls must use the main thread. Host callbacks must not block waiting for another callback that requires the owner's monitor. Consumers must preserve identity/removal for invalid, stale, future or regressed observations and reject queued work from stopped generations.
+PCM is borrowed synchronously and wiped; never retained, recorded or transmitted.
+The common pure AudioCaptureTime validates the original BOOTTIME hardware frame
+anchor; elapsedRealtimeNanos measures age and never replaces capture time. Invalid,
+missing, future or stale anchors drop the block. Last-call250ms validation, alpha,
+eye geometry and actual GPU effective readback remain host-owned. No demo APK,
+optical grid or native outline is required for direct audio/LUT integration.
 
-`ProductAudioStatus` reports requested/enabled, observed permission, capture phase, pending cleanup, generation, camera source observation, settings, a stable failure code and nullable `effectiveNativeLut`. Enabled means live foreground microphone capture, not installed native LUT state. Null native state is unknown. Default readback remains unknown: this delivery supplies no host texture allocation/JNI/native submission endpoint. Supply readback only when the host can actually observe effective compositor state. No endpoint or successful native application is invented.
-
-## Focused host verification
-
-`tests/ProductAudioFeatureOwnerContractTest.kt` is an executable JVM suite with deterministic permission/capture boundary doubles and the real core analyzer/owner/controls. It requires only Kotlin/JDK plus the cleared core sources and the three pure Kotlin owner/controls/timestamp payload files. Its main class is `io.github.mesmerprism.rustyquest.spatial_camera_panel.ProductAudioFeatureOwnerContractTest`. The repository integrator runs it using the focused host compiler harness, separately from Android runtime compilation. Do not compile AndroidAudioRecordRuntime in that host-only invocation.
-
-It checks explicit permission/denial, duplicate Start, one-capture fanout, source/disconnect stability, synchronous stop/lifecycle barriers, late callback rejection, restart after successful cleanup, terminal failed cleanup and truthful controls/settings. The suite does not certify the Android runtime, microphone privacy indicator, APK, permissions UI, hardware clock behavior, Scene, compositor, native texture ownership, headset or device. No APK/device/Gradle build forms part of this delivery.
+Host checks and real API35 compilation are source evidence. Actual Whole adoption,
+Android capture/clock calibration, APK/device, Scene/GPU/fence retirement and native
+readback remain unqualified until the carrier completes separate gates.

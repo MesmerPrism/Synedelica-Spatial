@@ -1,5 +1,32 @@
 # Cleared source continuation — 13 November 2026
 
+## Audio retirement version2 repair
+
+The current source adds the reviewed supplier retirement repair from the initial
+`6b94f01` baseline. See AUDIO-RETIREMENT-V2.md and its REVIEW/VERIFICATION companions.
+Six carrier Kotlin payloads now include a version2 immutable retirement ticket,
+physical capture/worker/drain evidence and sink ACKs, process app-owner/microphone
+admission across recreation, sink-only admission, pure status and explicit
+generation-scoped native observation. This is a breaking sink/capture protocol
+repair; use the complete matching cohort, not mixed v1/v2 files.
+
+The actual carrier must retain the original ticket/owner/session and genuine
+app/run/request/Whole subject and join it INSIDE its same Whole/Original before
+terminal, fence clear and no-media/zero-attachment finish. Its existing lifecycle
+also guards new Start/resource adoption until all Whole participants retire.
+No final Whole schema, native resource proof or shared carrier edit is supplied.
+
+Final focused checks:22 owner cases,5 worker/runtime tests,4 boundary tests and
+one copied-carrier wrapper test passed. All six payloads compiled against the
+real API35 Android jar. No recorder was initialized by runtime tests. Earlier
+39 library/adapter/demo tests are reused from the unchanged initial source cohort.
+Actual carrier/Android microphone/GPU/device qualification stays open.
+
+The code/continuation source checkpoint is consolidated on main at publication;
+exact final remote readback is recorded in the ignored source-owned receipt.
+
+## Retained initial source checkpoint
+
 This repository owns the new cleared library/demo. Selected development head:
 `main`. Reviewed source checkpoint `d01d9a660a10a55fbe5a4403e4d2448703268e99`
 was pushed non-force to the verified PUBLIC remote
@@ -13,7 +40,7 @@ Branch reconciliation: `codex/cleared-source` is retained at the reviewed source
 checkpoint and is an ancestor of selected main. There are no unmerged worker
 branches: workers delivered disjoint files to this repository's sole integrator.
 CP1 admission/contracts and CP2 independent source/host milestone are complete.
-The explicit closure contains55 files, including committed review/verification.
+That initial explicit closure contained55 files, including its review/verification.
 
 Implemented: pure fixed-window PCM16 analyzer, common original capture timestamp
 mapping, authored RGB quiet/onset style, immutable LUT16, texture transfer, actual
