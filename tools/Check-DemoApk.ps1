@@ -1,45 +1,72 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# Newly authored partial identity/boundary inspection; no signature/alignment/class readiness checks.
-# Does not build, install, launch, or qualify a device.
+# Authored headless package verification; never installs, launches or opens a recorder.
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)][string]$ApkPath,
+    [Parameter(Mandatory)][string]$ApkPath,
+    [Parameter(Mandatory)][string]$AndroidSdkRoot,
+    [Parameter(Mandatory)][string]$JavaHome,
+    [Parameter(Mandatory)][string]$EvidenceDirectory,
+    [string]$BuildToolsVersion = '36.0.0',
+    [string]$PythonPath = 'python',
     [string]$ApkAnalyzer
 )
 $ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+$repoRoot = Split-Path $PSScriptRoot -Parent
 $resolvedApk = (Resolve-Path -LiteralPath $ApkPath).Path
-if (-not $ApkAnalyzer) {
-    $command = Get-Command apkanalyzer -ErrorAction SilentlyContinue
-    if ($command) { $ApkAnalyzer = $command.Source }
+$sdkRoot = (Resolve-Path -LiteralPath $AndroidSdkRoot).Path
+$evidenceRoot = [IO.Path]::GetFullPath($EvidenceDirectory)
+if (Test-Path -LiteralPath $evidenceRoot) { throw 'Use a new evidence directory; retained results are never overwritten.' }
+[void](New-Item -ItemType Directory -Path $evidenceRoot)
+$buildTools = Join-Path $sdkRoot "build-tools/$BuildToolsVersion"
+$signer = Join-Path $buildTools 'apksigner.bat'
+$align = Join-Path $buildTools 'zipalign.exe'
+$javaExe = Join-Path (Resolve-Path -LiteralPath $JavaHome).Path 'bin/java.exe'
+$analyzerRoot = Join-Path $sdkRoot 'cmdline-tools/latest'
+$analyzerJar = Join-Path $analyzerRoot 'lib/apkanalyzer-classpath.jar'
+$analyzerInput = if ($ApkAnalyzer) { $ApkAnalyzer } else { $analyzerJar }
+$inspector = Join-Path $PSScriptRoot 'inspect_demo_apk.py'
+foreach ($required in @($signer, $align, $javaExe, $analyzerInput, $inspector)) {
+    if (-not (Test-Path -LiteralPath $required -PathType Leaf)) { throw "Missing package inspection input: $required" }
 }
-if (-not $ApkAnalyzer) { throw 'Pass -ApkAnalyzer with an Android SDK apkanalyzer executable.' }
-$manifestOutput = & $ApkAnalyzer manifest print $resolvedApk
-if ($LASTEXITCODE -ne 0) { throw 'apkanalyzer could not inspect the archive manifest.' }
-[xml]$manifest = $manifestOutput -join [Environment]::NewLine
-$ns = [System.Xml.XmlNamespaceManager]::new($manifest.NameTable)
-$ns.AddNamespace('a', 'http://schemas.android.com/apk/res/android')
-if ($manifest.manifest.package -ne 'io.github.mesmerprism.synedelica.demo.spatial') {
-    throw 'Archive does not have the distinct standalone demo application ID.'
+$apkSha = (Get-FileHash -LiteralPath $resolvedApk -Algorithm SHA256).Hash.ToLowerInvariant()
+$manifestPath = Join-Path $evidenceRoot 'AndroidManifest.xml'
+if ($ApkAnalyzer) {
+    & $ApkAnalyzer manifest print $resolvedApk 1> $manifestPath 2> (Join-Path $evidenceRoot 'manifest-stderr.txt')
+} else {
+    # Invoke the SDK's own CLI with the selected JDK. Its batch wrapper can emit
+    # a version warning and exit zero when findstr is absent from a minimal PATH.
+    & $javaExe "-Dcom.android.sdklib.toolsdir=$analyzerRoot" -classpath $analyzerJar `
+        com.android.tools.apk.analyzer.ApkAnalyzerCli manifest print $resolvedApk `
+        1> $manifestPath 2> (Join-Path $evidenceRoot 'manifest-stderr.txt')
 }
-$sdk = $manifest.SelectSingleNode('/manifest/uses-sdk', $ns)
-if ($sdk.GetAttribute('minSdkVersion', $ns.LookupNamespace('a')) -ne '34') { throw 'Expected minimum Android API 34.' }
-if ($sdk.GetAttribute('targetSdkVersion', $ns.LookupNamespace('a')) -ne '35') { throw 'Expected target Android API 35.' }
-$permissions = @($manifest.SelectNodes('/manifest/uses-permission', $ns) | ForEach-Object {
-    $_.GetAttribute('name', $ns.LookupNamespace('a'))
-})
-if ('android.permission.RECORD_AUDIO' -notin $permissions) { throw 'Missing explicit microphone permission.' }
-if ($permissions | Where-Object { $_ -match 'CAMERA|INTERNET|ACCESS_NETWORK|FOREGROUND_SERVICE|READ_MEDIA|WRITE_EXTERNAL' }) {
-    throw 'Unexpected network, background-service, or recording-storage permission.'
+if ($LASTEXITCODE -ne 0) { throw 'Actual APK manifest decoding failed.' }
+[xml]$decodedManifest = Get-Content -LiteralPath $manifestPath -Raw
+if ($decodedManifest.DocumentElement.Name -ne 'manifest') { throw 'Decoder did not produce an Android manifest.' }
+& $signer verify --verbose --print-certs $resolvedApk *> (Join-Path $evidenceRoot 'signature.txt')
+if ($LASTEXITCODE -ne 0) { throw 'Actual APK signature verification failed.' }
+& $align -c -P 16 4 $resolvedApk *> (Join-Path $evidenceRoot 'alignment.txt')
+if ($LASTEXITCODE -ne 0) { throw 'Actual APK ZIP/page alignment verification failed.' }
+$inspectionPath = Join-Path $evidenceRoot 'inspection.json'
+& $PythonPath $inspector $resolvedApk --manifest-xml $manifestPath --output $inspectionPath *> (Join-Path $evidenceRoot 'inspection-log.txt')
+if ($LASTEXITCODE -ne 0) { throw 'Actual APK manifest/DEX/payload inclusion gate failed; inspect the retained report.' }
+if ((Get-FileHash -LiteralPath $resolvedApk -Algorithm SHA256).Hash.ToLowerInvariant() -ne $apkSha) {
+    throw 'APK bytes changed during inspection.'
 }
-if ($manifest.SelectNodes('/manifest/application/service | /manifest/application/provider', $ns).Count -gt 0) {
-    throw 'Initial foreground-only demo must not introduce a service or provider.'
+$receipt = [ordered]@{
+    schema = 'synedelica.demo.package-check.v1'
+    apk_sha256 = $apkSha
+    apk_bytes = (Get-Item -LiteralPath $resolvedApk).Length
+    signature_verified = $true
+    zipalign_4_and_native_page16_verified = $true
+    inspection_sha256 = (Get-FileHash -LiteralPath $inspectionPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    manifest_sha256 = (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    build_tools_version = $BuildToolsVersion
+    tools = @($signer, (Join-Path $buildTools 'lib/apksigner.jar'), $align, $javaExe, $analyzerInput, $inspector) | ForEach-Object {
+        [ordered]@{ path = $_; sha256 = (Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLowerInvariant() }
+    }
+    limits = @('No installation or device/wearer test', 'DEX inclusion does not prove SDK startup or visible output',
+        'ZIP alignment does not establish native runtime/ELF compatibility', 'No microphone or physical sink retirement qualification')
 }
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-$archive = [System.IO.Compression.ZipFile]::OpenRead($resolvedApk)
-try {
-    $unexpected = @($archive.Entries | Where-Object {
-        $_.FullName -match '(?i)(passthrough_outline|synedelica_operator|\.(pcm|wav|mp3|ogg)$)'
-    })
-    if ($unexpected.Count) { throw 'Unexpected native-outline, operator, or recorded-audio payload.' }
-} finally { $archive.Dispose() }
-Write-Output 'Partial demo identity/foreground checks passed. APK signature/alignment/classes and device/compositor remain unqualified.'
+$receipt | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $evidenceRoot 'package-receipt.json') -Encoding utf8NoBOM
+Write-Output "Verified actual package identity/DEX/payload, signature and ZIP alignment: $apkSha"

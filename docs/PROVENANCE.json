@@ -51,7 +51,39 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "5e558778e841df54503733fabd969bcb23b839f1d2dc459f88f53990e81dab16"
+      "sha256": "c67fe3137304baa3a08ee5720de71504ce1b73390fa44e77fee9d79c6dfbf1de"
+    },
+    {
+      "path": ".planning/DEMO-APK-CONFIG-REVIEW.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "af1aa6e9c6bdac86d75bd71c2f76e437aa574d716c44f938ee590af40c6dd15f"
+    },
+    {
+      "path": ".planning/DEMO-APK-MILESTONE.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "1d0b74092a589e4ba4791ffcdbfd1988a0d97055a6a7522db86e059988052d12"
+    },
+    {
+      "path": ".planning/DEMO-APK-REVIEW.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "4f1ab59dfcab25930d396129fab35bb5ccc1951b0decbb65afa237174ec9b7b6"
+    },
+    {
+      "path": ".planning/DEMO-APK-VERIFICATION.md",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "564a595750a982597d1cd9b07964063b1c067b1d2406c89b96e7ccd279f0b64a"
     },
     {
       "path": ".planning/PLAN.md",
@@ -99,7 +131,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "193f6961bfdb81337f7e06ef28ec1cb26a166e303d7a7998ae3ce43843831e7a"
+      "sha256": "6eded48e7e1d04b97db5367902be623975e3533e5bac432916b69a9c527d17f3"
     },
     {
       "path": "THIRD_PARTY.md",
@@ -107,7 +139,7 @@
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "7d8e86e0a464a12b6accddeeeb505cde1c6251c8a7a77ecbac6a86431326045a"
+      "sha256": "676a1352d8e97f822571b0b25417c1be04383b8cf2e79c3e64b1fc368eb30679"
     },
     {
       "path": "adapter-spatial/build.gradle.kts",
@@ -470,6 +502,14 @@
       "sha256": "f00449f99d2ff342c7632cfc8513eb676a06fabd3aee42875da9b9d12552fc0a"
     },
     {
+      "path": "tests/test_demo_apk_inspection.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "e22bb676a1a3abf50599f52cdfe30b72591f89ae2fc8620ea24991da69c61080"
+    },
+    {
       "path": "tests/test_public_boundary.py",
       "classification": "newly-authored",
       "source": "Authored for cleared Synedelica Spatial migration",
@@ -478,12 +518,20 @@
       "sha256": "6f0959aeb9dd5ead3b2e6607abb88776514ebb7650ed42e46fca1ae76b864dd0"
     },
     {
+      "path": "tools/Build-Demo.ps1",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "6abc5b0eae689983418dd9bca14880dad18649676dcd11ca2f41f8b76fc5d926"
+    },
+    {
       "path": "tools/Check-DemoApk.ps1",
       "classification": "newly-authored",
       "source": "Authored for cleared Synedelica Spatial migration",
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
-      "sha256": "7f499e85e22a056522f83143fcab3bbc256c75701e0ce9f512e6c198d6335af5"
+      "sha256": "ac71812c64d748a45ab279a9e66ba35c43d1288ad47219c9efc69587dc84e4cc"
     },
     {
       "path": "tools/check_public_boundary.py",
@@ -492,6 +540,22 @@
       "license": "AGPL-3.0-or-later",
       "upstream_revision": null,
       "sha256": "4c48bd1792ebd941bf24e9db599c5d6951ff50b7748e5d9ba2eb0e89fbb6cef0"
+    },
+    {
+      "path": "tools/demo-dependency-pins.init.gradle",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "7dd22b49950a23aa051170fa0d2f46858da9554fc1b77232dff7bd7a8e92e645"
+    },
+    {
+      "path": "tools/inspect_demo_apk.py",
+      "classification": "newly-authored",
+      "source": "Authored for cleared Synedelica Spatial migration",
+      "license": "AGPL-3.0-or-later",
+      "upstream_revision": null,
+      "sha256": "ca5c4037235fbd1432215b0c0d6d6ed1435a09664d8cbcee95b14a2d68a67df4"
     },
     {
       "path": "tools/run_host_tests.py",

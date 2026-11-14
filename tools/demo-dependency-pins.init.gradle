@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Authored evidence task. Resolves the ordinary app runtime graph; no source/SDK mutation.
+import groovy.json.JsonOutput
+import java.security.MessageDigest
+import org.gradle.api.artifacts.type.ArtifactTypeDefinition
+
+gradle.afterProject { project, state ->
+    if (project.path == ':demo-spatial') {
+        project.tasks.register('writeDemoDependencyPins') {
+            dependsOn ':demo-spatial:assembleDebug'
+            doLast {
+                def directory = project.findProperty('demoEvidenceDirectory')
+                if (!directory) throw new GradleException('Pass -PdemoEvidenceDirectory with a new local evidence directory')
+                def destination = new File(directory.toString(), 'resolved-runtime-artifacts.json')
+                if (destination.exists()) throw new GradleException('Retained dependency pins cannot be overwritten')
+                // AGP exposes code, manifest and resource variants for project libraries.
+                // Select the runtime code view explicitly instead of an ambiguous raw view.
+                def codeArtifacts = project.configurations.getByName('debugRuntimeClasspath').incoming.artifactView {
+                    attributes { attribute(ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE, 'android-classes-jar') }
+                }.artifacts.artifacts
+                def rows = codeArtifacts.collect { artifact ->
+                    def digest = MessageDigest.getInstance('SHA-256')
+                    artifact.file.withInputStream { input ->
+                        byte[] buffer = new byte[65536]
+                        int count
+                        while ((count = input.read(buffer)) != -1) digest.update(buffer, 0, count)
+                    }
+                    [component: artifact.id.componentIdentifier.displayName,
+                     artifact: artifact.id.displayName, path: artifact.file.absolutePath,
+                     bytes: artifact.file.length(), sha256: digest.digest().encodeHex().toString()]
+                }.sort { a, b -> a.artifact <=> b.artifact }
+                destination.setText(JsonOutput.prettyPrint(JsonOutput.toJson(
+                    [schema: 'synedelica.demo.runtime-artifact-pins.v1', artifact_view: 'android-classes-jar', artifacts: rows])) + '\n', 'UTF-8')
+            }
+        }
+    }
+}

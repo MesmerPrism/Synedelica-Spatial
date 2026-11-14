@@ -21,3 +21,12 @@ Resolved dependencies, not redistributed binaries: Kotlin2.1.0, Android Gradle
 Plugin8.11.1 and Android platform APIs (Apache-2.0); Meta Spatial SDK0.13.2 (Meta
 SDK license); JUnit4.13.2 (EPL-1.0, test only). Supplier artifacts retain their
 own notices. Gradle9.4.1 and JDK17 are operator-supplied build tools.
+
+The generated local demo APK naturally packages SDK native/shader resources and
+four SDK UI sound files. The package checker admits those sounds only by exact
+path/SHA-256 from `com.meta.spatial:meta-spatial-sdk:0.13.2` AAR
+`4902d21f7f02c874a7ee2d5e2ea88ee3a355caf6388e87b5771551f7a89fbe92`.
+They are external SDK dependency resources, not captured audio or recovered
+original-profile assets. Publisher terms apply; no redistribution grant is
+inferred. No SDK binary/resource is vendored into this source repository, and
+generated APKs/evidence remain ignored rather than published with the source.

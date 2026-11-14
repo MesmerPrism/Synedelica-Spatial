@@ -1,4 +1,34 @@
-# Cleared source continuation — 13 November 2026
+# Cleared source continuation — 14 November 2026
+
+## Standalone demo package milestone
+
+The existing standalone consumer `:demo-spatial` assembles its actual distinct
+`io.github.mesmerprism.synedelica.demo.spatial` application. No app/core/adapter,
+Gradle product configuration, source asset or six-file v2 carrier payload changed
+from `ad6a534`. Generated debug APK/evidence are retained privately and ignored.
+
+Actual debug APK SHA-256:
+`c08e0a95f1010e2433e42ab16b64853f5c7468cd761e4fb2c49f9aae0a8096be`
+(67,883,159 bytes). The first assembly,39 focused test results and corrected
+portable recipe passed; signature v2 and ZIP/native-page16 alignment passed.
+Actual closure includes5 DEX,4,272 classes,33,096 executable bodies,6 arm64
+libraries and209 assets. Required authored core/demo/adapter methods are present.
+
+New authored build/package tooling uses explicit local tool paths, ordinary fixed
+caches and before/after source inventories. The inspector passed15 synthetic
+negative/positive cases; independent review closed three P2 gate issues. A final
+clean-source recipe receipt will bind the reviewed tool candidate before its
+remote checkpoint is selected. See DEMO-APK-MILESTONE and its verification/reviews.
+
+The SDK's exact non-exported broker and four byte-pinned UI sound assets are
+observed dependency resources, not new authored assets or recordings. Publisher
+terms apply and no redistribution grant is inferred. Source/profile rights for
+recovered assets remain uncleared and those assets stay absent/private.
+
+No install, foreground/ADB/Q/W, microphone, headset or wearer operation occurred.
+Package inclusion does not qualify SDK startup, visible LUT response, actual
+carrier adoption, native outlines or physical Scene/GPU/sink retirement ACK.
+The ad6 v2 carrier supplier cohort remains pinned and independent of this demo.
 
 ## Audio retirement version2 repair
 

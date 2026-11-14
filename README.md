@@ -32,6 +32,23 @@ python tools/check_public_boundary.py --self-test
 python tools/check_public_boundary.py --history
 ```
 
+The existing standalone consumer is the `:demo-spatial` Android application,
+with application ID `io.github.mesmerprism.synedelica.demo.spatial`. Build it using
+the normal `gradle :demo-spatial:assembleDebug` path. On Windows/PowerShell7,
+`tools/Build-Demo.ps1` accepts explicit Gradle, Android SDK and JDK paths and
+produces a retained source/test/dependency/APK receipt under ignored `local/`:
+
+```text
+pwsh -File tools/Build-Demo.ps1 -GradlePath <Gradle9.4.1-executable> -AndroidSdkRoot <SDK> -JavaHome <JDK17>
+```
+
+Coordinate an exclusive long-build slot before invoking the recipe. It uses the
+existing Gradle cache and own module outputs; it never installs or launches an app.
+The package checker uses SDK Build Tools36.0.0 by default (overridable parameter),
+the SDK's APK-analyzer Java CLI, and an authored DEX inclusion inspector. Actual
+package checks cover manifest/DEX/payload closure, debug signature and ZIP page
+alignment. They do not prove SDK startup, visible effects or headset behavior.
+
 `tools/run_host_tests.py` provides an additional cache-only Kotlin2.1.0/JUnit4
 runner for selected pure sources; it does not substitute for Android compilation.
 No SDK binaries, build packages or signing keys are stored in this repository.
