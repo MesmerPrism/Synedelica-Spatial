@@ -16,9 +16,19 @@ libraries and209 assets. Required authored core/demo/adapter methods are present
 
 New authored build/package tooling uses explicit local tool paths, ordinary fixed
 caches and before/after source inventories. The inspector passed15 synthetic
-negative/positive cases; independent review closed three P2 gate issues. A final
-clean-source recipe receipt will bind the reviewed tool candidate before its
-remote checkpoint is selected. See DEMO-APK-MILESTONE and its verification/reviews.
+negative/positive cases; independent review closed three P2 gate issues. Final
+portable recipe PASS from CLEAN source `ffb9ac3dbb7accc235146b8345011307d26caae5`
+bound the same APK,39 test results,14 runtime code artifacts and final package
+checks. Before/after inventories matched; source_dirty=false. The retained receipt
+is in ignored `local/demo-recipe-20261114-003-clean/BUILD-RECEIPT.json`.
+
+Reviewed source `ffb9ac3dbb7accc235146b8345011307d26caae5` was fast-forwarded to
+main, pushed non-force to the verified PUBLIC remote and independently matched
+via Git refs and GitHub's commit API. The containing main also records this
+outcome. All70 source-file admissions and reachable historical ledgers pass;
+`codex/demo-apk-milestone` is a retained main ancestor. Initial6b/ad6 checkpoints
+and artifacts remain preserved. Final containing-ref readback is kept in the
+ignored source-owned checkpoint receipt. See milestone verification/reviews.
 
 The SDK's exact non-exported broker and four byte-pinned UI sound assets are
 observed dependency resources, not new authored assets or recordings. Publisher

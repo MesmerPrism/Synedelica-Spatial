@@ -20,3 +20,12 @@ carrier cohort remains pinned and unchanged; carrier adoption is independent.
 No install, foreground UI, ADB, Q/W action, wearer or device claim. The existing
 private application/APK and source6b/ad6 evidence remain untouched. Actual raw
 headset custody stays with its existing owner until the human requests Stop.
+
+Outcome: clean source ffb9ac3dbb7accc235146b8345011307d26caae5 completed the
+portable recipe with actual APK/manifest/DEX/signature/alignment evidence and39
+passing test results;15 inspector tests and4 boundary cases passed separately.
+No product-source/asset/v2 carrier change was required. Source was reviewed,
+fast-forwarded to main, pushed non-force and independently read back. Generated
+APK c08e0a95f1010e2433e42ab16b64853f5c7468cd761e4fb2c49f9aae0a8096be
+and receipts remain ignored/private. Source/package milestone is complete;
+runtime/device, carrier adoption and physical sink ACK gates remain open.

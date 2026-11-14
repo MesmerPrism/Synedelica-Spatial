@@ -38,9 +38,24 @@ Four SDK UI sound assets are admitted only by exact path/hash from the fixed
 base AAR; references require those verified entries. No SDK/source binary is
 vendored and no redistribution right is inferred. Recovered assets stay absent.
 
-Final clean-candidate portable recipe/readback is pending the source commit for
-this tooling. Raw failed/successful attempts, tool/source/dependency hashes and
-retained APKs stay ignored; publication is source/packaging evidence only.
+Final portable recipe PASS from clean source
+`ffb9ac3dbb7accc235146b8345011307d26caae5`: source_dirty=false, unchanged
+before/after inventory,39 test results and all actual package checks. The source
+inventory receipt SHA-256 is
+`02e3773311fe6b4c806c8ec34f3ea67507ee6c62165763a638b6aba7fd36881d`.
+The typed14-artifact runtime-code view hash is
+`d5864b1326fb29576211acffb391d90ecd54c7a94328f1b7be8291b459a27ed0`.
+The package receipt hash is
+`ae866a0a3a92ee9e4deddc16db3243c34c995f51ae4610a7fdf647cae0f8bd6b`.
+The cached recipe reused73 tasks and executed the dependency-pins task; it is
+not a cold rebuild or deterministic-build claim. Original assembly executed41
+tasks and produced the same retained APK. Raw failed/successful attempts, all
+tool/source/dependency hashes and APKs stay ignored. The long-build lease was
+released after success. Publication is source/packaging evidence only.
+
+That reviewed source was pushed to selected main and independently observed at
+the verified PUBLIC remote through Git refs and GitHub's commit API. The containing
+ref adds this outcome/continuation, with exact final readback stored locally.
 
 No installation, recorder, foreground UI, ADB, headset or wearer work occurred.
 DEX inclusion does not prove runtime execution or effect equivalence. ZIP page
